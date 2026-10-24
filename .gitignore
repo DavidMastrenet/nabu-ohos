@@ -1,0 +1,13 @@
+work/
+__pycache__/
+code/port/keys/
+code/port/firmware/
+code/port/out/
+code/upstream/*.tar.*
+tools/python/
+tools/openssh/
+tools/platform-tools/
+boot/*.img
+boot/*.tar.gz
+patches/open-runtime-overlay.tar.gz
+*.part

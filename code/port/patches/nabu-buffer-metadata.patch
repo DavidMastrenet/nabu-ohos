@@ -1,0 +1,86 @@
+--- a/src/display_gralloc/allocator.cpp
++++ b/src/display_gralloc/allocator.cpp
+@@ -13,6 +13,7 @@
+  * limitations under the License.
+  */
+ #include "allocator.h"
++#include "nabu_buffer_metadata.h"
+ #include <cinttypes>
+ #include <unistd.h>
+ #include <sys/ioctl.h>
+@@ -189,6 +190,11 @@
+         priBuffer = nullptr;
+         return ret;
+     }
++    ret = NabuBufferMetadata::Attach(priBuffer);
++    if (ret != DISPLAY_SUCCESS) {
++        FreeMem(priBuffer);
++        return ret;
++    }
+     *handle = priBuffer;
+     return DISPLAY_SUCCESS;
+ }
+--- a/src/display_gralloc/display_buffer_vdi_impl.cpp
++++ b/src/display_gralloc/display_buffer_vdi_impl.cpp
+@@ -14,6 +14,7 @@
+  */
+ 
+ #include "display_buffer_vdi_impl.h"
++#include "nabu_buffer_metadata.h"
+ #include "cinttypes"
+ #include "display_common.h"
+ #include "allocator.h"
+@@ -37,12 +38,13 @@
+ 
+ DisplayBufferVdiImpl::~DisplayBufferVdiImpl()
+ {
+-    AllocatorManager::GetInstance().DeInit();
++    // Shared allocator ownership lasts for the process; other VDI clients may remain alive.
+ }
+ 
+ int32_t DisplayBufferVdiImpl::AllocMem(const AllocInfo& info, BufferHandle*& handle) const
+ {
+-    return AllocatorManager::GetInstance().GetAllocator(info.usage)->AllocMem(info, &handle);
++    auto *allocator = AllocatorManager::GetInstance().GetAllocator(info.usage);
++    return allocator ? allocator->AllocMem(info, &handle) : DISPLAY_FAILURE;
+ }
+ 
+ void DisplayBufferVdiImpl::FreeMem(const BufferHandle& handle) const
+@@ -78,32 +80,27 @@
+ 
+ int32_t DisplayBufferVdiImpl::RegisterBuffer(const BufferHandle& handle)
+ {
+-    DISPLAY_LOGE("%s is not supported", __func__);
+-    return DISPLAY_NOT_SUPPORT;
++    return NabuBufferMetadata::Register(handle);
+ }
+ 
+ int32_t DisplayBufferVdiImpl::SetMetadata(const BufferHandle& handle, uint32_t key, const std::vector<uint8_t>& value)
+ {
+-    DISPLAY_LOGE("%s is not supported", __func__);
+-    return DISPLAY_NOT_SUPPORT;
++    return NabuBufferMetadata::Set(handle, key, value);
+ }
+ 
+ int32_t DisplayBufferVdiImpl::GetMetadata(const BufferHandle& handle, uint32_t key, std::vector<uint8_t>& value)
+ {
+-    DISPLAY_LOGE("%s is not supported", __func__);
+-    return DISPLAY_NOT_SUPPORT;
++    return NabuBufferMetadata::Get(handle, key, value);
+ }
+ 
+ int32_t DisplayBufferVdiImpl::ListMetadataKeys(const BufferHandle& handle, std::vector<uint32_t>& keys)
+ {
+-    DISPLAY_LOGE("%s is not supported", __func__);
+-    return DISPLAY_NOT_SUPPORT;
++    return NabuBufferMetadata::List(handle, keys);
+ }
+ 
+ int32_t DisplayBufferVdiImpl::EraseMetadataKey(const BufferHandle& handle, uint32_t key)
+ {
+-    DISPLAY_LOGE("%s is not supported", __func__);
+-    return DISPLAY_NOT_SUPPORT;
++    return NabuBufferMetadata::Erase(handle, key);
+ }
+ 
+ int32_t DisplayBufferVdiImpl::GetImageLayout(const BufferHandle& handle, ImageLayout& layout) const

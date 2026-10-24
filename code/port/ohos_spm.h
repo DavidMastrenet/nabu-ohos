@@ -1,0 +1,230 @@
+/* SPDX-License-Identifier: GPL-2.0 */
+/* API 26 SPM storage for the nabu OHOS kernel port. Wire layout follows
+ * OpenHarmony security_access_token/interfaces/innerkits/token_setproc. */
+#include <linux/list.h>
+#include <linux/mutex.h>
+#include <linux/xarray.h>
+#include <linux/overflow.h>
+#include <linux/uaccess.h>
+#include <linux/sizes.h>
+
+struct ohos_spm_data {
+	u32 version, uid, tokenid, tokenid_attr, index, name_size;
+	u64 name_offset;
+	u16 apl, distribution_type;
+	u32 id_type;
+	u64 ownerid;
+	u32 perm_size, extend_perm_size;
+	u64 perms_offset, extend_perms_offset, content_ptr;
+	u32 reserved[32];
+};
+struct ohos_spm_update {
+	u8 cnt, idx_err;
+	struct ohos_spm_data entries[];
+};
+struct ohos_spm_query { u32 tokenid; struct ohos_spm_data entry; };
+struct ohos_spm_entry {
+	struct ohos_spm_data data;
+	size_t size;
+	u8 content[];
+};
+struct ohos_spm_ref {
+	struct list_head link;
+	u32 id, spawnid;
+	u64 count;
+	u8 kind;
+};
+struct ohos_spm_ref_update { u8 op; u32 id, spawnid; };
+struct ohos_spm_ref_query { u32 id; u64 refcnt; };
+static DEFINE_XARRAY(ohos_spm_entries);
+static DEFINE_MUTEX(ohos_spm_lock);
+static LIST_HEAD(ohos_spm_refs);
+
+static long ohos_get_all_permissions(void __user *arg)
+{
+	ioctl_add_perm_data data = {0};
+	struct token_perm_node *node = NULL, *parent = NULL;
+	if (copy_from_user(&data.token, arg, sizeof(data.token))) return -EFAULT;
+	read_lock(&token_rwlock);
+	find_node_by_token(g_token_perm_root, data.token, &node, &parent);
+	if (node) memcpy(data.perm, node->perm_data.perm, sizeof(data.perm));
+	read_unlock(&token_rwlock);
+	if (!node) return -ENODATA;
+	return copy_to_user(arg, &data, sizeof(data)) ? -EFAULT : 0;
+}
+
+static bool ohos_spm_admin(void)
+{
+	return uid_eq(current_uid(), GLOBAL_ROOT_UID) ||
+		uid_eq(current_uid(), ACCESS_TOKEN_UID);
+}
+
+static int ohos_spm_batch(void __user *arg, bool replace)
+{
+	struct ohos_spm_update header;
+	struct ohos_spm_data data;
+	struct ohos_spm_entry *entry, *old;
+	u8 index;
+	int ret = 0;
+	u64 total;
+	if (!ohos_spm_admin())
+		return -EPERM;
+	if (copy_from_user(&header, arg, sizeof(header)))
+		return -EFAULT;
+	if (header.cnt > 50)
+		return -EINVAL;
+	mutex_lock(&ohos_spm_lock);
+	for (index = 0; index < header.cnt; index++) {
+		if (copy_from_user(&data, (u8 __user *)arg + sizeof(header) +
+			index * sizeof(data), sizeof(data))) { ret = -EFAULT; break; }
+		total = (u64)data.name_size + data.perm_size + data.extend_perm_size;
+		if (data.version != 1 || !data.tokenid || !data.name_size ||
+		    total > SZ_1M || data.name_offset != 0 ||
+		    data.perms_offset != data.name_size ||
+		    data.extend_perms_offset != (u64)data.name_size + data.perm_size) {
+			ret = -EINVAL; break;
+		}
+		old = xa_load(&ohos_spm_entries, data.tokenid);
+		if (old && !replace) { ret = -EEXIST; break; }
+		if (!old && replace) { ret = -ENOENT; break; }
+		entry = kzalloc(struct_size(entry, content, total), GFP_KERNEL);
+		if (!entry) { ret = -ENOMEM; break; }
+		entry->data = data;
+		entry->data.content_ptr = 0;
+		entry->size = total;
+		if (copy_from_user(entry->content, u64_to_user_ptr(data.content_ptr), total)) {
+			kfree(entry); ret = -EFAULT; break;
+		}
+		if (replace)
+			entry->data.uid = old->data.uid;
+		old = xa_store(&ohos_spm_entries, data.tokenid, entry, GFP_KERNEL);
+		ret = xa_err(old);
+		if (ret) { kfree(entry); break; }
+		kfree(old);
+	}
+	mutex_unlock(&ohos_spm_lock);
+	if (put_user(ret ? index : 0, &((struct ohos_spm_update __user *)arg)->idx_err))
+		return -EFAULT;
+	return ret;
+}
+
+static int ohos_spm_get(void __user *arg)
+{
+	struct ohos_spm_query query;
+	struct ohos_spm_data result;
+	struct ohos_spm_entry *entry;
+	u8 __user *dst;
+	int ret = 0;
+	if (copy_from_user(&query, arg, sizeof(query)))
+		return -EFAULT;
+	mutex_lock(&ohos_spm_lock);
+	entry = xa_load(&ohos_spm_entries, query.tokenid);
+	if (!entry) { ret = -ENOENT; goto out; }
+	if (query.entry.name_size < entry->data.name_size ||
+	    query.entry.perm_size < entry->data.perm_size ||
+	    query.entry.extend_perm_size < entry->data.extend_perm_size) {
+		ret = -ERANGE; goto out;
+	}
+	dst = u64_to_user_ptr(query.entry.content_ptr);
+	if (copy_to_user(dst, entry->content, entry->data.name_size) ||
+	    copy_to_user(dst + query.entry.perms_offset,
+		entry->content + entry->data.perms_offset, entry->data.perm_size) ||
+	    copy_to_user(dst + query.entry.extend_perms_offset,
+		entry->content + entry->data.extend_perms_offset, entry->data.extend_perm_size)) {
+		ret = -EFAULT; goto out;
+	}
+	result = entry->data;
+	result.name_offset = query.entry.name_offset;
+	result.perms_offset = query.entry.perms_offset;
+	result.extend_perms_offset = query.entry.extend_perms_offset;
+	result.content_ptr = query.entry.content_ptr;
+	query.entry = result;
+	if (copy_to_user(arg, &query, sizeof(query))) ret = -EFAULT;
+out:
+	mutex_unlock(&ohos_spm_lock);
+	return ret;
+}
+
+static int ohos_spm_ref_ioctl(unsigned int nr, void __user *arg)
+{
+	struct ohos_spm_ref_update update;
+	struct ohos_spm_ref_query query;
+	struct ohos_spm_ref *ref, *next, *found = NULL;
+	u8 kind = nr == 20 || nr == 21 ? 0 : 1;
+	u32 spawnid;
+	int ret = 0;
+	if (nr == 21 || nr == 23) {
+		if (copy_from_user(&query, arg, sizeof(query))) return -EFAULT;
+		query.refcnt = 0;
+		mutex_lock(&ohos_spm_lock);
+		list_for_each_entry(ref, &ohos_spm_refs, link)
+			if (ref->kind == kind && ref->id == query.id) query.refcnt += ref->count;
+		mutex_unlock(&ohos_spm_lock);
+		return copy_to_user(arg, &query, sizeof(query)) ? -EFAULT : 0;
+	}
+	if (!ohos_spm_admin() && !uid_eq(current_uid(), KUIDT_INIT(5523)) &&
+	    !uid_eq(current_uid(), NWEBSPAWN_UID)) return -EPERM;
+	if (nr == 24) {
+		if (copy_from_user(&spawnid, arg, sizeof(spawnid))) return -EFAULT;
+		mutex_lock(&ohos_spm_lock);
+		list_for_each_entry_safe(ref, next, &ohos_spm_refs, link)
+			if (ref->spawnid == spawnid) { list_del(&ref->link); kfree(ref); }
+		mutex_unlock(&ohos_spm_lock);
+		return 0;
+	}
+	if (copy_from_user(&update, arg, sizeof(update))) return -EFAULT;
+	if (update.op != 1 && update.op != 2) return -EINVAL;
+	mutex_lock(&ohos_spm_lock);
+	list_for_each_entry(ref, &ohos_spm_refs, link)
+		if (ref->kind == kind && ref->id == update.id && ref->spawnid == update.spawnid) {
+			found = ref; break;
+		}
+	if (!found && update.op == 1) {
+		found = kzalloc(sizeof(*found), GFP_KERNEL);
+		if (!found) { ret = -ENOMEM; goto out; }
+		found->id = update.id; found->spawnid = update.spawnid; found->kind = kind;
+		list_add(&found->link, &ohos_spm_refs);
+	}
+	if (found) {
+		if (update.op == 1) found->count++;
+		else if (found->count) found->count--;
+		if (!found->count) { list_del(&found->link); kfree(found); }
+	} else ret = -ENOENT;
+out:
+	mutex_unlock(&ohos_spm_lock);
+	return ret;
+}
+
+static long ohos_spm_ioctl(unsigned int cmd, void __user *arg)
+{
+	u32 token, version = 1;
+	struct ohos_spm_entry *entry;
+	if (_IOC_TYPE(cmd) != 'A') return -ENOTTY;
+	switch (_IOC_NR(cmd)) {
+	case 11: return ohos_get_all_permissions(arg);
+	case 12:
+		if (!ohos_spm_admin()) return -EPERM;
+		return copy_from_user(&current->ohos_userid, arg, sizeof(u32)) ? -EFAULT : 0;
+	case 13:
+		return copy_to_user(arg, &current->ohos_userid, sizeof(u32)) ? -EFAULT : 0;
+	case 16: return ohos_spm_batch(arg, false);
+	case 17: return ohos_spm_batch(arg, true);
+	case 18: return ohos_spm_get(arg);
+	case 19:
+		if (!ohos_spm_admin()) return -EPERM;
+		if (copy_from_user(&token, arg, sizeof(token))) return -EFAULT;
+		mutex_lock(&ohos_spm_lock);
+		entry = xa_erase(&ohos_spm_entries, token);
+		mutex_unlock(&ohos_spm_lock);
+		if (!entry) return -ENOENT;
+		kfree(entry); return 0;
+	case 20: case 21: case 22: case 23: case 24:
+		return ohos_spm_ref_ioctl(_IOC_NR(cmd), arg);
+	case 25: return copy_to_user(arg, &version, sizeof(version)) ? -EFAULT : 0;
+	case 29: return copy_to_user(arg, &current->ohos_enterprise, sizeof(u8)) ? -EFAULT : 0;
+	case 30:
+		if (!ohos_spm_admin()) return -EPERM;
+		return copy_from_user(&current->ohos_enterprise, arg, sizeof(u8)) ? -EFAULT : 0;
+	default: return -EOPNOTSUPP;
+	}
+}

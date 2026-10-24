@@ -1,0 +1,61 @@
+--- a/src/freedreno/drm/freedreno_bo.c
++++ b/src/freedreno/drm/freedreno_bo.c
+@@ -302,11 +302,8 @@
+ void
+ fd_bo_del(struct fd_bo *bo)
+ {
+-   if (!p_atomic_dec_zero(&bo->refcnt))
+-      return;
+-
+    simple_mtx_lock(&table_lock);
+-   bo_del_or_recycle(bo);
++   fd_bo_del_locked(bo);
+    simple_mtx_unlock(&table_lock);
+ }
+ 
+@@ -379,10 +376,23 @@
+ static void
+ bo_flush(struct fd_bo *bo)
+ {
+-   for (int i = 0; i < bo->nr_fences; i++) {
+-      struct fd_bo_fence *f = &bo->fences[i];
+-      fd_pipe_flush(f->pipe, f->fence);
+-   }
++   simple_mtx_lock(&table_lock);
++   unsigned count = bo->nr_fences;
++   struct fd_bo_fence *fences = calloc(count, sizeof(*fences));
++   if (count && !fences) {
++      simple_mtx_unlock(&table_lock);
++      abort();
++   }
++   for (unsigned i = 0; i < count; i++) {
++      fences[i] = bo->fences[i];
++      fd_pipe_ref_locked(fences[i].pipe);
++   }
++   simple_mtx_unlock(&table_lock);
++   for (unsigned i = 0; i < count; i++) {
++      fd_pipe_flush(fences[i].pipe, fences[i].fence);
++      fd_pipe_del(fences[i].pipe);
++   }
++   free(fences);
+ }
+ 
+ int
+--- a/src/freedreno/drm/freedreno_bo_cache.c
++++ b/src/freedreno/drm/freedreno_bo_cache.c
+@@ -143,6 +143,7 @@
+       if (entry->alloc_flags == flags) {
+          bo = entry;
+          list_delinit(&bo->list);
++         p_atomic_set(&bo->refcnt, 1);
+          break;
+       }
+    }
+@@ -175,7 +176,6 @@
+             simple_mtx_unlock(&table_lock);
+             goto retry;
+          }
+-         p_atomic_set(&bo->refcnt, 1);
+          bo->reloc_flags = FD_RELOC_FLAGS_INIT;
+          return bo;
+       }

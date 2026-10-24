@@ -1,0 +1,2968 @@
+{
+  "base_release": "HarmonyOS 7.0.0.107 (SP8DEVC00E16R1P1log), API26 ARM64 tablet",
+  "changes": [
+    {
+      "image": "system",
+      "path": "mnt/nabu-efi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "mnt/nabu-state",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/access_token.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/accountmgr.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/appspawn.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/audio_server.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        },
+        {
+          "op": "remove",
+          "path": "/jobs/0/cmds/17"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/concurrent_task_service.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/foundation.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/graphic.cfg",
+      "mode": "0o644",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        },
+        {
+          "op": "add",
+          "path": "/services/0/cpucore",
+          "value": [
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/hdcd.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/hdf_devmgr.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/healthsport_services.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/locationsa.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/multimodalinput.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/netmanager_base.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/netsysnative.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/param_watcher.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/powermgr.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/privacy.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/samgr_standard.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/softbus_server_musl.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/storage_daemon.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/init/storage_manager.cfg",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "/services/0/critical"
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/param/distributed_file.para",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "line_patch",
+      "edits": [
+        {
+          "start_line": 14,
+          "old": [
+            "const.distributed_file_property.enabled=true\n"
+          ],
+          "new": [
+            "const.distributed_file_property.enabled=false\n"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/param/ohos.para",
+      "mode": "0o500",
+      "uid": 0,
+      "gid": 0,
+      "action": "line_patch",
+      "edits": [
+        {
+          "start_line": 5,
+          "old": [
+            "const.debuggable=0\n"
+          ],
+          "new": [
+            "const.debuggable=1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/passwd",
+      "mode": "0o644",
+      "uid": 0,
+      "gid": 0,
+      "action": "line_patch",
+      "edits": [
+        {
+          "start_line": 0,
+          "old": [
+            "root:x:0:0:::/bin/false\n"
+          ],
+          "new": [
+            "root:x:0:0:OHOS debug:/data/service/el1/public/dropbear/root:/system/bin/sh\n"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "system",
+      "path": "system/etc/shells",
+      "mode": "0o644",
+      "uid": 0,
+      "gid": 0,
+      "action": "new_text",
+      "text": "/system/bin/sh\n"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/arch",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/arch/arm64",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/arch/arm64/crypto",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/crypto",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/base",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/base/regmap",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/block",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/block/zram",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/bluetooth",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/bus",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/bus/mhi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/bus/mhi/host",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/char",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/char/ipmi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/clk",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/clk/qcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/counter",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/cpufreq",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto/amlogic",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto/hisilicon",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto/hisilicon/hpre",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto/hisilicon/sec2",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto/hisilicon/trng",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/crypto/hisilicon/zip",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/devfreq",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/dma",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/dma/dw-edma",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/firmware",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/firmware/cirrus",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/firmware/google",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gnss",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpio",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/arm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/arm/display",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/arm/display/komeda",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/bridge",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/bridge/adv7511",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/bridge/analogix",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/bridge/cadence",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/gud",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/imagination",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/panel",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/panthor",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/tidss",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/gpu/drm/udl",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/greybus",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hid",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hid/i2c-hid",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hid/usbhid",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hwmon",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hwtracing",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hwtracing/coresight",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/hwtracing/stm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/i2c",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/i2c/algos",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/i2c/busses",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/i2c/muxes",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/adc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/buffer",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/common",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/common/st_sensors",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/imu",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/imu/st_lsm6dsx",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/light",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/magnetometer",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/iio/trigger",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/input",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/input/keyboard",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/input/misc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/input/mouse",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/input/touchscreen",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/interconnect",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/interconnect/qcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/leds",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/leds/flash",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/leds/rgb",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/mailbox",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/cec",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/cec/i2c",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/common",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/common/videobuf2",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/i2c",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/mc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform/cadence",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform/qcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform/qcom/camss",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform/qcom/iris",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform/qcom/venus",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/platform/verisilicon",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/rc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/rc/keymaps",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/usb",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/usb/uvc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/media/v4l2-core",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/memory",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/mfd",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/misc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/misc/rp1",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/mux",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/amazon",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/amazon/ena",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/broadcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/broadcom/genet",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/mediatek",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/qualcomm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/qualcomm/emac",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/qualcomm/rmnet",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ethernet/realtek",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ipa",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/ipvlan",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/pcs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/phy",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/phy/realtek",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/usb",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/vxlan",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireguard",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/ath",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/ath/ath10k",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/ath/ath11k",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/ath/ath12k",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/ath/wcn36xx",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/intel",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/intel/iwlwifi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/intel/iwlwifi/dvm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/intel/iwlwifi/mvm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/marvell",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/marvell/mwifiex",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/mediatek",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/mediatek/mt76",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/mediatek/mt76/mt7921",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wireless/rsi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/net/wwan",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/nfc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/nfc/nxp-nci",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/nfc/s3fwrn5",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/nvmem",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/nvmem/layouts",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pci",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pci/controller",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pci/controller/dwc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pci/endpoint",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pci/endpoint/functions",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pci/pwrctrl",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/perf",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/perf/arm_cspmu",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/phy",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/phy/cadence",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/phy/qualcomm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pinctrl",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pinctrl/qcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/power",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/power/reset",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/power/sequencing",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/power/supply",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/pwm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/regulator",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/remoteproc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/reset",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/rpmsg",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/rtc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/scsi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/slimbus",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/soc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/soc/qcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/soundwire",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/spi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/staging",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/staging/media",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/staging/media/max96712",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/thermal",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/ufs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/ufs/host",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/cdns3",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/class",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/gadget",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/gadget/legacy",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/misc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/serial",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/typec",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/typec/altmodes",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/typec/mux",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/typec/tcpm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/typec/tipd",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/usb/typec/ucsi",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/video",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/video/backlight",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/watchdog",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/xen",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/drivers/xen/xen-pciback",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/fs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/fs/fuse",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/fs/ntfs3",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/fs/overlayfs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/fs/xfs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/lib",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/lib/crc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/lib/crypto",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/lib/crypto/arm64",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/lib/lz4",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/mm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/802",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/8021q",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/bluetooth",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/bluetooth/bnep",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/bluetooth/hidp",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/bluetooth/rfcomm",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/bridge",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/hsr",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/ipv4",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/ipv4/netfilter",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/ipv6",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/ipv6/netfilter",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/llc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/mac80211",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/netfilter",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/netfilter/ipvs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/netlink",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/nfc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/nfc/nci",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/qrtr",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/rfkill",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/sched",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/net/wireless",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/core",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/core/seq",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/drivers",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/soc",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/soc/codecs",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/soc/fsl",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/soc/generic",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/soc/qcom",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/soc/qcom/qdsp6",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib/modules/6.17.0-xiaomi-nabu-ohos/kernel/sound/usb",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "system",
+      "path": "system/lib64/init/libinit_bootDetector.z.so",
+      "mode": null,
+      "uid": null,
+      "gid": null,
+      "action": "remove"
+    },
+    {
+      "image": "system",
+      "path": "system/lib64/libEGL_impl.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "/vendor/lib64/libEGL.so.1.0.0"
+    },
+    {
+      "image": "system",
+      "path": "system/lib64/libGLESv1_impl.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "/vendor/lib64/libGLESv1_CM.so.1.1.0"
+    },
+    {
+      "image": "system",
+      "path": "system/lib64/libGLESv2_impl.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "/vendor/lib64/libGLESv2.so.2.0.0"
+    },
+    {
+      "image": "system",
+      "path": "system/lib64/libGLESv3_impl.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "/vendor/lib64/libGLESv2.so.2.0.0"
+    },
+    {
+      "image": "vendor",
+      "path": "etc/audio/alsa/share/alsa.conf",
+      "mode": "0o644",
+      "uid": 0,
+      "gid": 0,
+      "action": "line_patch",
+      "edits": [
+        {
+          "start_line": 200,
+          "old": [
+            "\ttype hw\n",
+            "\tcard $CARD\n",
+            "\tdevice $DEV\n",
+            "\tsubdevice $SUBDEV\n"
+          ],
+          "new": [
+            "\ttype plug\n",
+            "\tslave {\n",
+            "\t\tpcm {\n",
+            "\t\t\ttype hw\n",
+            "\t\t\tcard $CARD\n",
+            "\t\t\tdevice $DEV\n",
+            "\t\t\tsubdevice $SUBDEV\n",
+            "\t\t}\n",
+            "\t\tformat S24_LE\n",
+            "\t}\n"
+          ]
+        },
+        {
+          "start_line": 209,
+          "old": [
+            "\t\tdescription \"Direct hardware device without any conversions\"\n"
+          ],
+          "new": [
+            "\t\tdescription \"nabu hardware with 24-bit PCM conversion\"\n"
+          ]
+        }
+      ]
+    },
+    {
+      "image": "vendor",
+      "path": "etc/hdfconfig/alsa_adapter.json",
+      "mode": "0o644",
+      "uid": 0,
+      "gid": 0,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "replace",
+          "path": "/adapters/0/daiId",
+          "value": "MultiMedia1 (*)"
+        },
+        {
+          "op": "remove",
+          "path": "/adapters/0/simple_mixer_ctl_volume/playback/0"
+        },
+        {
+          "op": "add",
+          "path": "/adapters/0/simple_mixer_ctl_volume/playback/0",
+          "value": {
+            "name": "BR Digital PCM"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/adapters/0/simple_mixer_ctl_volume/playback/1",
+          "value": {
+            "name": "TR Digital PCM"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/adapters/0/simple_mixer_ctl_volume/playback/2",
+          "value": {
+            "name": "BL Digital PCM"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/adapters/0/simple_mixer_ctl_volume/playback/3",
+          "value": {
+            "name": "TL Digital PCM"
+          }
+        },
+        {
+          "op": "remove",
+          "path": "/adapters/0/simple_mixer_ctl_volume/capture/0"
+        },
+        {
+          "op": "add",
+          "path": "/adapters/0/simple_mixer_ctl_volume/capture/0",
+          "value": {
+            "name": "ADC1"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/adapters/0/simple_mixer_ctl_volume/capture/1",
+          "value": {
+            "name": "ADC3"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/adapters/0/cardName",
+          "value": "X5"
+        },
+        {
+          "op": "remove",
+          "path": "/adapters/1"
+        }
+      ]
+    },
+    {
+      "image": "vendor",
+      "path": "etc/init.hmos.emulator.cfg",
+      "mode": "0o644",
+      "uid": 2000,
+      "gid": 2000,
+      "action": "json_patch",
+      "operations": [
+        {
+          "op": "add",
+          "path": "/services/5",
+          "value": {
+            "name": "nabu-sshd",
+            "path": [
+              "/debug/dropbearmulti",
+              "dropbear",
+              "-F",
+              "-r",
+              "/data/service/el1/public/dropbear/host_ed25519",
+              "-D",
+              "/data/service/el1/public/dropbear/root/.ssh",
+              "-p",
+              "2222"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "shell",
+              "log"
+            ],
+            "secon": "u:r:hdcd:s0",
+            "sandbox": 0,
+            "start-mode": "boot",
+            "apl": "system_core",
+            "permission": [
+              "ohos.permission.DUMP",
+              "ohos.permission.CAPTURE_SCREEN",
+              "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+              "ohos.permission.GET_RUNNING_INFO",
+              "ohos.permission.MANAGE_SETTINGS",
+              "ohos.permission.SET_TIME"
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/services/6",
+          "value": {
+            "name": "nabu-hardware",
+            "path": [
+              "/debug/busybox",
+              "sh",
+              "/debug/load-hardware.sh"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "system",
+              "audio"
+            ],
+            "secon": "u:r:init:s0",
+            "sandbox": 0,
+            "start-mode": "boot",
+            "once": 1
+          }
+        },
+        {
+          "op": "add",
+          "path": "/services/7",
+          "value": {
+            "name": "nabu-rmtfs",
+            "path": [
+              "/debug/busybox",
+              "sh",
+              "/debug/run-rmtfs.sh"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "system"
+            ],
+            "secon": "u:r:init:s0",
+            "sandbox": 0,
+            "start-mode": "condition"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/services/8",
+          "value": {
+            "name": "nabu-tqftpserv",
+            "path": [
+              "/debug/busybox",
+              "sh",
+              "/debug/run-tqftpserv.sh"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "system"
+            ],
+            "secon": "u:r:init:s0",
+            "sandbox": 0,
+            "start-mode": "condition"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/services/9",
+          "value": {
+            "name": "nabu-sensors",
+            "path": [
+              "/debug/busybox",
+              "sh",
+              "/debug/run-sensors.sh"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "system"
+            ],
+            "secon": "u:r:init:s0",
+            "sandbox": 0,
+            "start-mode": "condition"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/services/10",
+          "value": {
+            "name": "nabu-motion",
+            "path": [
+              "/debug/busybox",
+              "sh",
+              "/debug/run-motion.sh"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "system"
+            ],
+            "secon": "u:r:init:s0",
+            "sandbox": 0,
+            "start-mode": "condition",
+            "permission": [
+              "ohos.permission.ACCELEROMETER"
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/services/11",
+          "value": {
+            "name": "nabu-storage",
+            "path": [
+              "/debug/busybox",
+              "sh",
+              "/debug/run-storage.sh"
+            ],
+            "uid": "root",
+            "gid": [
+              "root",
+              "system"
+            ],
+            "secon": "u:r:init:s0",
+            "sandbox": 0,
+            "start-mode": "condition",
+            "permission": [
+              "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+            ]
+          }
+        },
+        {
+          "op": "remove",
+          "path": "/jobs/0/cmds/4"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/0/cmds/4",
+          "value": "write /dev/emu-mem/low/memory.limit_in_bytes 1024M"
+        },
+        {
+          "op": "remove",
+          "path": "/jobs/0/cmds/6"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/0/cmds/6",
+          "value": "write /dev/emu-mem/trivial/memory.limit_in_bytes 512M"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/16",
+          "value": "setparam persist.hdc.mode tcp"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/17",
+          "value": "setparam persist.hdc.port 8710"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/18",
+          "value": "setparam persist.hdc.mode.tcp enable"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/19",
+          "value": "setparam persist.hdc.control true"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/20",
+          "value": "chown 3036 3036 /sys/class/backlight/ktz8866-backlight/brightness"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/21",
+          "value": "chmod 0664 /sys/class/backlight/ktz8866-backlight/brightness"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/22",
+          "value": "setparam persist.commonlibrary.taskpoolglobalenableffrt 0"
+        },
+        {
+          "op": "add",
+          "path": "/jobs/3/cmds/23",
+          "value": "setparam persist.commonlibrary.taskpooldisableffrt 1"
+        }
+      ]
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/dri",
+      "mode": "0o755",
+      "uid": 0,
+      "gid": 0,
+      "action": "mkdir"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/dri/kms_swrast_dri.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libgallium_dri.so"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/dri/msm_dri.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libgallium_dri.so"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/dri/swrast_dri.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libgallium_dri.so"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libEGL.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libEGL.so.1"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libEGL.so.1",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libEGL.so.1.0.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libGLESv1_CM.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libGLESv1_CM.so.1"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libGLESv1_CM.so.1",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libGLESv1_CM.so.1.1.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libGLESv2.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libGLESv2.so.2"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libGLESv2.so.2",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libGLESv2.so.2.0.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libaudio_render_adapter.z.so",
+      "mode": "0o644",
+      "uid": 2000,
+      "gid": 2000,
+      "action": "binary_edits",
+      "edits": [
+        {
+          "offset": 45437,
+          "before": "2494",
+          "after": "1087"
+        },
+        {
+          "offset": 45444,
+          "before": "f6",
+          "after": "36"
+        },
+        {
+          "offset": 45465,
+          "before": "2494",
+          "after": "1087"
+        },
+        {
+          "offset": 45472,
+          "before": "e8",
+          "after": "28"
+        }
+      ]
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libdrm.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libdrm.so.2"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libdrm.so.2",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libdrm.so.2.124.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libdrm_freedreno.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libdrm_freedreno.so.1"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libdrm_freedreno.so.1",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libdrm_freedreno.so.1.124.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libgbm.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libgbm.so.1"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libgbm.so.1",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libgbm.so.1.0.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libglapi.so",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libglapi.so.0"
+    },
+    {
+      "image": "vendor",
+      "path": "lib64/libglapi.so.0",
+      "mode": "0o777",
+      "uid": 0,
+      "gid": 0,
+      "action": "symlink",
+      "target": "libglapi.so.0.0.0"
+    }
+  ]
+}

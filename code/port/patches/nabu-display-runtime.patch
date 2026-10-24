@@ -1,0 +1,123 @@
+--- a/src/display_device/core/hdi_layer.h
++++ b/src/display_device/core/hdi_layer.h
+@@ -135,17 +135,11 @@
+         return mAcquireFence.GetFd();
+     }
+ 
++    // The HDI service duplicates this borrowed descriptor for IPC and calls
++    // HdifdParcelable::Move(); the VDI must retain and close its original.
+     int GetReleaseFenceFd()
+     {
+-        int fd;
+-        if (releaseFences_.empty()) {
+-            fd = -1;
+-        } else {
+-            fd = releaseFences_.front();
+-            releaseFences_.pop();
+-        }
+-        DISPLAY_LOGD("fd is %{public}d releaseFences_ size %{public}zu", fd, releaseFences_.size());
+-        return fd;
++        return mReleaseFence.GetFd();
+     }
+ 
+     bool IsVisible() const
+@@ -155,7 +149,7 @@
+ 
+     void SetReleaseFence(int fd)
+     {
+-        releaseFences_.push(fd);
++        mReleaseFence = fd;
+     };
+     void ClearColor(uint32_t color);
+ 
+@@ -186,7 +180,7 @@
+     bool mVisible = true;
+     uint32_t mId = 0;
+     HdiFd mAcquireFence;
+-    std::queue<int> releaseFences_;
++    HdiFd mReleaseFence;
+     LayerType mType;
+ 
+     IRect mDisplayRect;
+--- a/src/display_device/core/hdi_layer.cpp
++++ b/src/display_device/core/hdi_layer.cpp
+@@ -214,8 +214,8 @@
+     DISPLAY_CHK_RETURN((buffer == nullptr), DISPLAY_NULL_PTR, DISPLAY_LOGE("buffer is nullptr"));
+     std::unique_ptr<HdiLayerBuffer> layerbuffer = std::make_unique<HdiLayerBuffer>(*buffer);
+     mHdiBuffer = std::move(layerbuffer);
++    mAcquireFence = fence;
+     if (fence > -1) {
+-        mAcquireFence = dup(fence);
+         // if (access("/data/hdi_dump_layer", F_OK) != -1) {
+         //     if (DumpLayerBuffer(const_cast<BufferHandle *>(buffer)) != DISPLAY_SUCCESS) {
+         //         DISPLAY_LOGE("dump layer buffer failed");
+@@ -278,10 +278,6 @@
+ HdiLayer::~HdiLayer()
+ {
+     mIdSets.erase(mId);
+-    while (!releaseFences_.empty()) {
+-        close(releaseFences_.front());
+-        releaseFences_.pop();
+-    }
+ }
+ } // namespace OHOS
+ } // namespace HDI
+--- a/src/display_device/drm/drm_display.cpp
++++ b/src/display_device/drm/drm_display.cpp
+@@ -28,6 +28,18 @@
+ #include "hdi_gfx_composition.h"
+ #include "idisplay_buffer_vdi.h"
+ 
++#include <cstdio>
++
++static unsigned ReadNabuBacklight(const char *node)
++{
++    char path[160];
++    snprintf(path, sizeof(path), "/sys/class/backlight/ktz8866-backlight/%s", node);
++    FILE *fp = fopen(path, "r");
++    unsigned value = 0;
++    if (fp) { fscanf(fp, "%u", &value); fclose(fp); }
++    return value;
++}
++
+ namespace OHOS {
+ namespace HDI {
+ namespace DISPLAY {
+@@ -110,8 +122,7 @@
+     int ret = ConvertToDrmPowerState(status, drmPowerState);
+     DISPLAY_CHK_RETURN((ret != DISPLAY_SUCCESS), DISPLAY_PARAM_ERR,
+         DISPLAY_LOGE("unknown power status %{public}d", status));
+-    mConnector->SetDpmsState(drmPowerState);
+-    return DISPLAY_SUCCESS;
++    return mConnector->SetDpmsState(drmPowerState);
+ }
+ 
+ int32_t DrmDisplay::ConvertToHdiPowerState(uint32_t drmPowerState, DispPowerStatus &hdiPowerState)
+@@ -251,12 +262,25 @@
+ int32_t DrmDisplay::GetDisplayBacklight(uint32_t *value)
+ {
+     DISPLAY_CHK_RETURN((value == nullptr), DISPLAY_NULL_PTR, DISPLAY_LOGE("value is nullptr"));
+-    return mConnector->GetBrightness(*value);
++    int result = mConnector->GetBrightness(*value);
++    if (result == DISPLAY_SUCCESS) return result;
++    unsigned maximum = ReadNabuBacklight("max_brightness");
++    if (!maximum) return result;
++    *value = (ReadNabuBacklight("brightness") * 255U + maximum / 2U) / maximum;
++    return DISPLAY_SUCCESS;
+ }
+ 
+ int32_t DrmDisplay::SetDisplayBacklight(uint32_t value)
+ {
+-    return mConnector->SetBrightness(value);
++    int result = mConnector->SetBrightness(value);
++    if (result == DISPLAY_SUCCESS) return result;
++    unsigned maximum = ReadNabuBacklight("max_brightness");
++    if (!maximum || value > 255U) return DISPLAY_PARAM_ERR;
++    FILE *fp = fopen("/sys/class/backlight/ktz8866-backlight/brightness", "w");
++    if (!fp) return DISPLAY_FAILURE;
++    int written = fprintf(fp, "%u", (value * maximum + 127U) / 255U);
++    int closed = fclose(fp);
++    return written > 0 && closed == 0 ? DISPLAY_SUCCESS : DISPLAY_FAILURE;
+ }
+ } // namespace OHOS
+ } // namespace HDI
